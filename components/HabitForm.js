@@ -3,15 +3,15 @@ import { useState } from "react";
 export default function HabitForm({ addHabit }) {
   const [habit, setHabit] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
     if (habit.trim()) {
       addHabit(habit);
       setHabit("");
     }
-  };
+  }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         value={habit}
