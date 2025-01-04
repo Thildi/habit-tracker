@@ -77,4 +77,5 @@ const ClearWrapper = styled.div`
 
 const Headline = styled.h1`
   margin: 16px;
+  color: #c91959;
 `;
