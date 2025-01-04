@@ -66,8 +66,8 @@ export default function HabitForm({ onAddHabit }) {
             ))}
           </DaysContainer>
         )}
-        {error && <ErrorMessage>{error}</ErrorMessage>}{" "}
-        {/* Fehlermeldung anzeigen */}
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+
         <button type="submit">Add Habit</button>
       </FormContentWrapper>
     </form>
@@ -85,9 +85,9 @@ const StyledButton = styled.button`
   padding: 10px 20px;
   margin-left: 14px;
   border-radius: 5px;
-  background-color: ${(props) => (props.selected ? "#8AAAA5" : "#0000")};
+  background-color: ${(props) => (props.selected ? "#CABD9A" : "#0000")};
   color: ${(props) => (props.selected ? "white" : "black")};
-  border: 1px solid ${(props) => (props.selected ? "#8AAAA5" : "#ccc")};
+  border: 1px solid ${(props) => (props.selected ? "#CABD9A" : "#ccc")};
   cursor: pointer;
   font-size: 10px;
   font-weight: bold;
@@ -96,17 +96,19 @@ const StyledButton = styled.button`
 
 const DaysContainer = styled.div`
   display: flex;
-  justify-content: flex-start; /* Stellt sicher, dass die Buttons am Anfang ausgerichtet sind */
+  justify-content: center; /* Stellt sicher, dass die Buttons am Anfang ausgerichtet sind */
   flex-wrap: wrap; /* Ermöglicht das Umbrechen der Buttons, wenn sie den Container überschreiten */
 `;
 
 const ErrorMessage = styled.p`
-  color: red;
+  color: #c30e59;
   font-size: 14px;
   margin-top: 10px;
+  margin-left: 14px;
 `;
 
 const FormContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 `;

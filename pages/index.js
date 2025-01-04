@@ -2,6 +2,7 @@ import HabitForm from "@/components/HabitForm";
 import HabitList from "@/components/HabitList";
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import styled from "styled-components";
 
 export default function Home() {
   const [habits, setHabits] = useState([]);
@@ -54,7 +55,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Welcome to TrackTastic!</h1>
+      <Headline>Welcome to TrackTastic!</Headline>
       <HabitForm onAddHabit={handleAddHabit} />
 
       <HabitList
@@ -62,7 +63,18 @@ export default function Home() {
         onToggleHabit={handleToggleHabit}
         onDeleteHabit={handleDeleteHabit}
       />
-      <button onClick={handleClearProgress}>Clear Progress</button>
+      <ClearWrapper>
+        <button onClick={handleClearProgress}>Clear Progress</button>
+      </ClearWrapper>
     </div>
   );
 }
+
+const ClearWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const Headline = styled.h1`
+  margin: 10px;
+`;

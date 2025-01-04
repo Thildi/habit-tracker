@@ -12,7 +12,7 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
 
   return (
     <div>
-      <h2>Your Habits:</h2>
+      <TableHeadline>Your Habits:</TableHeadline>
       <table>
         <thead>
           <tr>
@@ -54,7 +54,7 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
 const StyledDeleteButton = styled.button`
   border: none;
   background: none;
-  color: red;
+  color: #c30e59;
   margin: 0.1px;
   padding: 0.1px;
   font-size: 16px;
@@ -72,4 +72,8 @@ const StyledCheckbox = styled.input`
     margin: 110px
     padding: 1px;
   `}
+`;
+
+const TableHeadline = styled.h2`
+  margin: 16px;
 `;
