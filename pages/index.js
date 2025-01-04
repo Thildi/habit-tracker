@@ -15,7 +15,7 @@ export default function Home() {
     const newHabit = {
       id: Date.now(),
       habit,
-      days,
+      days: days || [],
       progress: {},
     };
 
@@ -38,10 +38,24 @@ export default function Home() {
     localStorage.setItem("habits", JSON.stringify(updatedHabits));
   }
 
+  function handleClearProgress() {
+    const resetHabits = habits.map((habit) => ({
+      ...habit,
+      progress: Object.keys(habit.progress).reduce((acc, day) => {
+        acc[day] = false;
+        return acc;
+      }, {}),
+    }));
+    setHabits(resetHabits);
+
+    localStorage.setItem("habits", JSON.stringify(resetHabits));
+  }
+
   return (
     <div>
-      <h1>Welcome to the Habit Tracker!</h1>
+      <h1>Welcome to TrackTastic!</h1>
       <HabitForm onAddHabit={handleAddHabit} />
+      <button onClick={handleClearProgress}>Clear Progress</button>
       <HabitList
         habits={habits}
         onToggleHabit={handleToggleHabit}

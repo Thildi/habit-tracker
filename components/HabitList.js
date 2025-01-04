@@ -29,7 +29,7 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
               </td>
               {daysOfWeek.map((day) => (
                 <td key={day}>
-                  {habit.days.includes(day) && (
+                  {habit.days && habit.days.includes(day) && (
                     <input
                       type="checkbox"
                       checked={habit.progress[day] || false}
