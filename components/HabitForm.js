@@ -83,13 +83,13 @@ const StyledInput = styled.input`
 
 const StyledButton = styled.button`
   padding: 10px 20px;
-  margin-left: 14px;
+  margin: 10px;
   border-radius: 5px;
   background-color: ${(props) => (props.selected ? "#CABD9A" : "#0000")};
   color: ${(props) => (props.selected ? "white" : "black")};
   border: 1px solid ${(props) => (props.selected ? "#CABD9A" : "#ccc")};
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
 `;

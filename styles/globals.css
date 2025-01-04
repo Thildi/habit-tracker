@@ -23,6 +23,7 @@ h3 {
 button {
   display: flex;
   justify-content: center;
+  font-size: 18px;
   cursor: pointer;
   background-color: #8aaaa5;
   color: white;

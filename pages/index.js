@@ -55,7 +55,7 @@ export default function Home() {
 
   return (
     <div>
-      <Headline>Welcome to TrackTastic!</Headline>
+      <Headline>Habitify</Headline>
       <HabitForm onAddHabit={handleAddHabit} />
 
       <HabitList
@@ -76,5 +76,5 @@ const ClearWrapper = styled.div`
 `;
 
 const Headline = styled.h1`
-  margin: 10px;
+  margin: 16px;
 `;
