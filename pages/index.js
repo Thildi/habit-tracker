@@ -1,6 +1,7 @@
 import HabitForm from "@/components/HabitForm";
 import HabitList from "@/components/HabitList";
 import { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Home() {
   const [habits, setHabits] = useState([]);
@@ -13,7 +14,7 @@ export default function Home() {
   // Funktion zum Hinzufügen eines Habits
   function handleAddHabit(habit, days) {
     const newHabit = {
-      id: Date.now(),
+      id: uuidv4(),
       habit,
       days: days || [],
       progress: {},

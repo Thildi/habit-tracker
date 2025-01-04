@@ -21,7 +21,7 @@ export default function HabitForm({ onAddHabit }) {
         setError("");
       }
     } else {
-      setError("Please select at least one day or choose 'Everyday'");
+      setError("Please select at least one day or choose 'Every day'");
     }
   };
 
@@ -77,7 +77,13 @@ export default function HabitForm({ onAddHabit }) {
 const StyledInput = styled.input`
   padding: 10px;
   margin: 14px;
-  border-radius: 20px;
-`;
+  border-radius: 5px;
+  border: none;
 
-const StyledCheckbox = styled.input;
+  ${(props) =>
+    props.type === "checkbox" &&
+    `
+    margin: 5px;
+    padding: 5px;
+  `}
+`;

@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -14,9 +16,10 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Habit</th>
             {daysOfWeek.map((day) => (
-              <th key={day}> {day}</th>
+              <th key={day}>{day}</th>
             ))}
           </tr>
         </thead>
@@ -24,13 +27,15 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
           {habits.map((habit, habitIndex) => (
             <tr key={habit.id}>
               <td>
-                <button onClick={() => onDeleteHabit(habit.id)}>&times;</button>
-                {habit.habit}
+                <StyledDeleteButton onClick={() => onDeleteHabit(habit.id)}>
+                  &times;
+                </StyledDeleteButton>
               </td>
+              <td>{habit.habit}</td>
               {daysOfWeek.map((day) => (
                 <td key={day}>
                   {habit.days && habit.days.includes(day) && (
-                    <input
+                    <StyledCheckbox
                       type="checkbox"
                       checked={habit.progress[day] || false}
                       onChange={() => handleCheckboxChange(habitIndex, day)}
@@ -45,3 +50,26 @@ export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
     </div>
   );
 }
+
+const StyledDeleteButton = styled.button`
+  border: none;
+  background: none;
+  color: red;
+  margin: 0.1px;
+  padding: 0.1px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+const StyledCheckbox = styled.input`
+  border-radius: 20px;
+
+  /* Spezifische Styles für Checkboxen */
+  ${(props) =>
+    props.type === "checkbox" &&
+    `
+    margin: 110px
+    padding: 1px;
+  `}
+`;
