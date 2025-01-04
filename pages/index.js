@@ -1,29 +1,27 @@
 import HabitForm from "@/components/HabitForm";
 import HabitList from "@/components/HabitList";
-
 import { useState } from "react";
 
 export default function Home() {
   const [habits, setHabits] = useState([]);
 
-  function handleAddHabit(habit) {
+  // Funktion zum Hinzufügen eines Habits
+  function handleAddHabit(habit, days) {
     setHabits((prevHabits) => [
       ...prevHabits,
-      { id: prevHabits.length, habit, checked: false },
+      { id: prevHabits.length, habit, days, progress: {} },
     ]);
   }
 
-  function handleToggleHabit(index) {
-    setHabits((prevHabits) => {
-      const updatedHabits = [...prevHabits];
-      updatedHabits[index].checked = !updatedHabits[index].checked;
-      return updatedHabits;
-    });
+  // Funktion zum Toggle der Checkbox für ein Habit an einem bestimmten Tag
+  function handleToggleHabit(updatedHabits) {
+    setHabits(updatedHabits); // Zustand der Habits aktualisieren
   }
+
   return (
     <div>
       <h1>Welcome to the Habit Tracker!</h1>
-      <HabitForm addHabit={handleAddHabit} />
+      <HabitForm onAddHabit={handleAddHabit} />
       <HabitList habits={habits} onToggleHabit={handleToggleHabit} />
     </div>
   );
