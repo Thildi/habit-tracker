@@ -1,4 +1,4 @@
-export default function HabitList({ habits, onToggleHabit }) {
+export default function HabitList({ habits, onToggleHabit, onDeleteHabit }) {
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   const handleCheckboxChange = (habitIndex, day) => {
@@ -16,14 +16,17 @@ export default function HabitList({ habits, onToggleHabit }) {
           <tr>
             <th>Habit</th>
             {daysOfWeek.map((day) => (
-              <th key={day}>{day}</th>
+              <th key={day}> {day}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {habits.map((habit, habitIndex) => (
             <tr key={habit.id}>
-              <td>{habit.habit}</td>
+              <td>
+                <button onClick={() => onDeleteHabit(habit.id)}>&times;</button>
+                {habit.habit}
+              </td>
               {daysOfWeek.map((day) => (
                 <td key={day}>
                   {habit.days.includes(day) && (
