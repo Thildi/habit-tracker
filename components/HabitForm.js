@@ -36,54 +36,77 @@ export default function HabitForm({ onAddHabit }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <StyledInput
-        type="text"
-        value={habit}
-        onChange={(e) => setHabit(e.target.value)}
-        placeholder="Add a new habit..."
-        required
-      />
-      <div>
-        <label>
-          <StyledInput
-            type="checkbox"
-            checked={everyday}
-            onChange={() => setEveryday(!everyday)}
-          />
+      <FormContentWrapper>
+        <StyledInput
+          type="text"
+          value={habit}
+          onChange={(e) => setHabit(e.target.value)}
+          placeholder="Add a new habit..."
+          required
+        />
+        <h2>How often:</h2>
+        <StyledButton
+          type="button"
+          onClick={() => setEveryday(!everyday)}
+          selected={everyday}
+        >
           Every day
-        </label>
-      </div>
-      {!everyday && (
-        <div>
-          {daysOfWeek.map((day) => (
-            <label key={day}>
-              <StyledInput
-                type="checkbox"
-                checked={days.includes(day)} // Überprüft, ob der Tag ausgewählt wurde
-                onChange={() => handleDayChange(day)} // Fügt den Tag hinzu oder entfernt ihn
-              />
-              {day}
-            </label>
-          ))}
-        </div>
-      )}
-      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-      {/* Fehlermeldung anzeigen */}
-      <button type="submit">Add Habit</button>
+        </StyledButton>
+        {!everyday && (
+          <DaysContainer>
+            {daysOfWeek.map((day) => (
+              <StyledButton
+                key={day}
+                type="button"
+                onClick={() => handleDayChange(day)}
+                selected={days.includes(day)}
+              >
+                {day}
+              </StyledButton>
+            ))}
+          </DaysContainer>
+        )}
+        {error && <ErrorMessage>{error}</ErrorMessage>}{" "}
+        {/* Fehlermeldung anzeigen */}
+        <button type="submit">Add Habit</button>
+      </FormContentWrapper>
     </form>
   );
 }
 
 const StyledInput = styled.input`
-  padding: 10px;
+  padding: 12px;
   margin: 14px;
   border-radius: 5px;
-  border: none;
+  border: solid, 1px #ccc;
+`;
 
-  ${(props) =>
-    props.type === "checkbox" &&
-    `
-    margin: 5px;
-    padding: 5px;
-  `}
+const StyledButton = styled.button`
+  padding: 10px 20px;
+  margin-left: 14px;
+  border-radius: 5px;
+  background-color: ${(props) => (props.selected ? "#8AAAA5" : "#0000")};
+  color: ${(props) => (props.selected ? "white" : "black")};
+  border: 1px solid ${(props) => (props.selected ? "#8AAAA5" : "#ccc")};
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+`;
+
+const DaysContainer = styled.div`
+  display: flex;
+  justify-content: flex-start; /* Stellt sicher, dass die Buttons am Anfang ausgerichtet sind */
+  flex-wrap: wrap; /* Ermöglicht das Umbrechen der Buttons, wenn sie den Container überschreiten */
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
+const FormContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

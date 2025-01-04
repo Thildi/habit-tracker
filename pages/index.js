@@ -56,12 +56,13 @@ export default function Home() {
     <div>
       <h1>Welcome to TrackTastic!</h1>
       <HabitForm onAddHabit={handleAddHabit} />
-      <button onClick={handleClearProgress}>Clear Progress</button>
+
       <HabitList
         habits={habits}
         onToggleHabit={handleToggleHabit}
         onDeleteHabit={handleDeleteHabit}
       />
+      <button onClick={handleClearProgress}>Clear Progress</button>
     </div>
   );
 }
